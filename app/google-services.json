@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "256215541293",
+    "firebase_url": "https://kill-unicorn.firebaseio.com",
+    "project_id": "kill-unicorn",
+    "storage_bucket": "kill-unicorn.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:256215541293:android:343f39c67b4ac873a4faa4",
+        "android_client_info": {
+          "package_name": "com.socra.socra.killunicorn"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "256215541293-35aktq0n1bq6vne7ghi1589hui7dgdvh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.socra.socra.killunicorn",
+            "certificate_hash": "2119547a1836f1cbd8063ea8d4cac03c3ccce19b"
+          }
+        },
+        {
+          "client_id": "256215541293-tauotdo79bnqu2j55ir5d3b0fmp9krkh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1hneXWsrdOfwRXEHzSCxZTh_OfjGvh5U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "256215541293-tauotdo79bnqu2j55ir5d3b0fmp9krkh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
