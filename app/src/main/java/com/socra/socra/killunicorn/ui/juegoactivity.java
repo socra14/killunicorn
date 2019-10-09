@@ -15,6 +15,10 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.socra.socra.killunicorn.R;
 
@@ -29,8 +33,13 @@ public class juegoactivity extends AppCompatActivity {
     int altopantalla;
     Random aleatorio;
     boolean gameover = false;
-    String id,name;
+    String uid,name;
     FirebaseFirestore bd;
+    private FirebaseUser firebaseUser;
+
+    FirebaseAuth firebaseAuth;
+    FirebaseFirestore db;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,10 +53,19 @@ public class juegoactivity extends AppCompatActivity {
         initPantalla();
         moverPato();
         initCuentaatras();
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseUser = firebaseAuth.getCurrentUser();
+        db = FirebaseFirestore.getInstance();
+        uid = firebaseUser.getUid();
+        getPlayerNames();
+
+        //Bundle extras = getIntent().getExtras();
+        //uid = extras.getString(Constantes.EXTRA_JUGADA_ID);
     }
 
     private void initCuentaatras() {
-        new CountDownTimer(3000,1000){
+        new CountDownTimer(10000,1000){
             @Override
             public void onTick(long l) {
                 long segundosrestantes = l /1000;
@@ -64,9 +82,27 @@ public class juegoactivity extends AppCompatActivity {
         }.start();
     }
 
+    private void getPlayerNames() {
+        // Obtener el nombre del player
+        db.collection("Usuarios")
+                .document(uid)
+                .get()
+                .addOnSuccessListener(juegoactivity.this, new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+
+                        name = documentSnapshot.get("nick").toString();
+                        tvnick.setText(name);
+
+
+                    }
+                });
+
+    }
+
     private void saveResultFirestore() {
         bd.collection("Usuarios")
-                .document(id)
+                .document(uid)
                 .update(
                         "patos",counter
                 );
