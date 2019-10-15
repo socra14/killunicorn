@@ -9,19 +9,19 @@
 
     <ImageView
         android:id="@+id/fotopato1"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="66dp"
+        android:layout_height="67dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="80dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nombrefinal"
-        app:srcCompat="@drawable/duck" />
+        app:srcCompat="@drawable/unicornio" />
 
     <ImageView
         android:id="@+id/contador_pato"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
+        android:layout_width="32dp"
+        android:layout_height="30dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="8dp"
@@ -38,6 +38,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:text="0"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/contador_pato"
         app:layout_constraintStart_toEndOf="@+id/contador_pato"
         app:layout_constraintTop_toTopOf="@+id/contador_pato" />
@@ -52,15 +53,17 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:text="tu nombre"
+        android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/contador_pato"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_width="24dp"
+        android:layout_height="27dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         app:layout_constraintEnd_toStartOf="@+id/tvtimer"
@@ -75,6 +78,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:text="60s"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

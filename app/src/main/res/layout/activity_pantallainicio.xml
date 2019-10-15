@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_blue_light"
+    android:background="@android:color/holo_blue_bright"
     tools:context=".ui.pantallainicio">
 
     <ImageView
@@ -26,7 +26,7 @@
         android:background="@drawable/ranking"
         app:layout_constraintBottom_toBottomOf="@+id/btnplay"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.885"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/btnplay"
         app:layout_constraintTop_toTopOf="@+id/btnplay"
         app:layout_constraintVertical_bias="0.0" />
@@ -41,5 +41,17 @@
         android:background="@drawable/play1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="204dp"
+        android:layout_height="273dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnranking"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/unicornio_portada" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

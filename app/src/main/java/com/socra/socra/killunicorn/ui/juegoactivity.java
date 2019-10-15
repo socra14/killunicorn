@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Point;
 import android.graphics.Typeface;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -40,6 +41,7 @@ public class juegoactivity extends AppCompatActivity {
     FirebaseFirestore bd;
     private FirebaseUser firebaseUser;
     int maxpuntuacion =0;
+    MediaPlayer clickunicorn;
 
     FirebaseAuth firebaseAuth;
 
@@ -122,7 +124,7 @@ public class juegoactivity extends AppCompatActivity {
     private void mostrardialogofin() {
         AlertDialog.Builder builder =new AlertDialog.Builder(this);
         builder.setMessage("Has conseguido cazar " +counter+ " patos").setTitle("Game over");
-        builder.setCancelable(false);
+        builder.setCancelable(true);
 
         builder.setPositiveButton("Reiniciar", new DialogInterface.OnClickListener() {
             @Override
@@ -135,11 +137,13 @@ public class juegoactivity extends AppCompatActivity {
             }
         });
 
-        builder.setNegativeButton("Ver ranking", new DialogInterface.OnClickListener() {
+
+        builder.setNegativeButton("salir", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.dismiss();
-               //Intent in = new Intent(gameActivity.this,rankingActivityn.class);
+                finish();
+                //Intent in = new Intent(gameActivity.this,rankingActivityn.class);
                 //startActivity(in);
 
             }
@@ -167,18 +171,19 @@ public class juegoactivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (!gameover){
+                    clickunicorn.start();
                     counter++;
                     contador.setText(String.valueOf(counter));
 
-                    imageViewpato.setImageResource(R.drawable.duck_clicked);
+                    imageViewpato.setImageResource(R.drawable.sangre);
 
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            imageViewpato.setImageResource(R.drawable.duck);
+                            imageViewpato.setImageResource(R.drawable.unicornio);
                             moverPato();
                         }
-                    },500);
+                    },300);
                 }
 
 
@@ -202,7 +207,7 @@ public class juegoactivity extends AppCompatActivity {
     }
 
     private void inicializaComponentes() {
-
+        clickunicorn = MediaPlayer.create(this,R.raw.clickunic);
         contador =findViewById(R.id.tvcontador);
         tiempo =findViewById(R.id.tvtimer);
         tvnick =findViewById(R.id.nombrefinal);
