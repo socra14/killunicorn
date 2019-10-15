@@ -1,5 +1,6 @@
 package com.socra.socra.killunicorn.ui;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,7 +16,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -36,9 +39,10 @@ public class juegoactivity extends AppCompatActivity {
     String uid,name;
     FirebaseFirestore bd;
     private FirebaseUser firebaseUser;
+    int maxpuntuacion =0;
 
     FirebaseAuth firebaseAuth;
-    FirebaseFirestore db;
+
 
 
     @Override
@@ -56,7 +60,7 @@ public class juegoactivity extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
-        db = FirebaseFirestore.getInstance();
+
         uid = firebaseUser.getUid();
         getPlayerNames();
 
@@ -84,7 +88,7 @@ public class juegoactivity extends AppCompatActivity {
 
     private void getPlayerNames() {
         // Obtener el nombre del player
-        db.collection("Usuarios")
+        bd.collection("Usuarios")
                 .document(uid)
                 .get()
                 .addOnSuccessListener(juegoactivity.this, new OnSuccessListener<DocumentSnapshot>() {
@@ -101,11 +105,18 @@ public class juegoactivity extends AppCompatActivity {
     }
 
     private void saveResultFirestore() {
-        bd.collection("Usuarios")
-                .document(uid)
-                .update(
-                        "patos",counter
-                );
+        if (counter > maxpuntuacion){
+            maxpuntuacion = counter;
+
+            bd.collection("Usuarios")
+                    .document(uid)
+                    .update(
+                            "patos",maxpuntuacion
+                    );
+        }
+
+
+
     }
 
     private void mostrardialogofin() {
