@@ -22,11 +22,11 @@
 
     <Button
         android:id="@+id/btnIrAregistrar"
-        android:layout_width="150dp"
+        android:layout_width="179dp"
         android:layout_height="70dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:background="@drawable/ranking"
+        android:background="@drawable/registrarse"
         android:textColor="@color/common_google_signin_btn_text_dark_default"
         app:layout_constraintBottom_toBottomOf="@+id/btnPlay"
         app:layout_constraintEnd_toEndOf="parent"

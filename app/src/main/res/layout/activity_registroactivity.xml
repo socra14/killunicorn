@@ -71,11 +71,12 @@
 
             <Button
                 android:id="@+id/btnregistro"
-                android:layout_width="203dp"
-                android:layout_height="72dp"
+                android:layout_width="227dp"
+                android:layout_height="65dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="40dp"
-                android:background="@drawable/ranking"
+                android:background="@drawable/registrarse"
+
                 android:textColor="@android:color/background_light" />
         </LinearLayout>
     </ScrollView>
