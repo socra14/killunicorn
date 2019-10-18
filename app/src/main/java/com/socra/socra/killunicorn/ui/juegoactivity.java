@@ -40,8 +40,9 @@ public class juegoactivity extends AppCompatActivity {
     String uid,name;
     FirebaseFirestore bd;
     private FirebaseUser firebaseUser;
-    int maxpuntuacion =0;
+    int maxpuntuacion;
     MediaPlayer clickunicorn;
+    int countermax = maxpuntuacion;
 
     FirebaseAuth firebaseAuth;
 
@@ -108,13 +109,15 @@ public class juegoactivity extends AppCompatActivity {
 
     private void saveResultFirestore() {
         if (counter > maxpuntuacion){
-            maxpuntuacion = counter;
+
 
             bd.collection("Usuarios")
                     .document(uid)
                     .update(
-                            "patos",maxpuntuacion
+                            "patos",counter
                     );
+            counter = maxpuntuacion;
+            maxpuntuacion = countermax;
         }
 
 
@@ -123,7 +126,7 @@ public class juegoactivity extends AppCompatActivity {
 
     private void mostrardialogofin() {
         AlertDialog.Builder builder =new AlertDialog.Builder(this);
-        builder.setMessage("Has conseguido cazar " +counter+ " patos").setTitle("Game over");
+        builder.setMessage("Has conseguido matar " +counter+ " unicornios").setTitle("Game over");
         builder.setCancelable(true);
 
         builder.setPositiveButton("Reiniciar", new DialogInterface.OnClickListener() {
