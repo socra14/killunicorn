@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">kill unicorn</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_ranking_activity">ranking_activity</string>
 </resources>

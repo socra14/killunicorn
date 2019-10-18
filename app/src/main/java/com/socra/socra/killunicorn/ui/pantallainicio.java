@@ -43,5 +43,13 @@ public class pantallainicio extends AppCompatActivity {
             }
         });
 
+        btnranking.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(pantallainicio.this,ranking_activity.class);
+                startActivity(i);
+            }
+        });
+
     }
 }
