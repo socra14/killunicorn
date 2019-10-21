@@ -42,8 +42,8 @@ public class juegoactivity extends AppCompatActivity {
     FirebaseFirestore bd;
     private FirebaseUser firebaseUser;
     int maxpuntuacion ;
-    MediaPlayer clickunicorn;
-
+    MediaPlayer clickunicorn,musicabase,musicafin;
+    ImageView imageView;
 
     FirebaseAuth firebaseAuth;
 
@@ -128,8 +128,16 @@ public class juegoactivity extends AppCompatActivity {
 
     private void mostrardialogofin() {
         AlertDialog.Builder builder =new AlertDialog.Builder(this);
-        builder.setMessage("Has conseguido matar " +counter+ " unicornios").setTitle("Game over");
-        builder.setCancelable(true);
+        View v = getLayoutInflater().inflate(R.layout.gameover, null);
+
+        builder.setMessage("Has conseguido matar " +counter+ " unicornios")
+                .setTitle("Game over")
+                .setCancelable(false)
+                .setView(v);
+
+        imageView = v.findViewById(R.id.unicorn);
+
+
 
         builder.setPositiveButton("Reiniciar", new DialogInterface.OnClickListener() {
             @Override
