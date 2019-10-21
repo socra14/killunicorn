@@ -27,6 +27,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.socra.socra.killunicorn.R;
 
 import java.util.Random;
+import java.util.prefs.Preferences;
 
 public class juegoactivity extends AppCompatActivity {
 
@@ -40,9 +41,9 @@ public class juegoactivity extends AppCompatActivity {
     String uid,name;
     FirebaseFirestore bd;
     private FirebaseUser firebaseUser;
-    int maxpuntuacion;
+    int maxpuntuacion ;
     MediaPlayer clickunicorn;
-    int countermax = maxpuntuacion;
+
 
     FirebaseAuth firebaseAuth;
 
@@ -66,6 +67,7 @@ public class juegoactivity extends AppCompatActivity {
 
         uid = firebaseUser.getUid();
         getPlayerNames();
+        maxpuntuacion = getSharedPreferences("maxpun",MODE_PRIVATE).getInt("counter",0);
 
         //Bundle extras = getIntent().getExtras();
         //uid = extras.getString(Constantes.EXTRA_JUGADA_ID);
@@ -109,15 +111,15 @@ public class juegoactivity extends AppCompatActivity {
 
     private void saveResultFirestore() {
         if (counter > maxpuntuacion){
-
+            getSharedPreferences("maxpun", MODE_PRIVATE).edit().putInt("counter", counter).commit();
 
             bd.collection("Usuarios")
                     .document(uid)
                     .update(
                             "patos",counter
                     );
-            counter = maxpuntuacion;
-            maxpuntuacion = countermax;
+
+
         }
 
 
@@ -215,6 +217,7 @@ public class juegoactivity extends AppCompatActivity {
         tiempo =findViewById(R.id.tvtimer);
         tvnick =findViewById(R.id.nombrefinal);
         imageViewpato =findViewById(R.id.fotopato1);
+
 
        /* Typeface tipeface = Typeface.createFromAsset(getAssets(),"pixel.ttf");
         contador.setTypeface(tipeface);
