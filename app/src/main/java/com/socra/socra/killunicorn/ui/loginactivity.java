@@ -14,6 +14,10 @@ import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -41,6 +45,15 @@ public class loginactivity extends AppCompatActivity {
         btnInicio = findViewById(R.id.btnPlay);
         progressBar = findViewById(R.id.progressBarlogin);
         btnRegistro = findViewById(R.id.btnIrAregistrar);
+
+        MobileAds.initialize(this, "ca-app-pub-5375202444824175~4535471184");
+
+        AdView adView = new AdView(this);
+        adView.setAdSize(AdSize.BANNER);adView.setAdUnitId("ca-app-pub-3940256099942544/6300978111");
+
+        adView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
 
         firebaseAuth = FirebaseAuth.getInstance();
         cambiarvisibilidadlogin(true);

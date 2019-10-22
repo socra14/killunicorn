@@ -13,6 +13,10 @@ import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -45,6 +49,15 @@ public class registroactivity extends AppCompatActivity {
         pbregistro = findViewById(R.id.progressBarRegistro);
         scregistro = findViewById(R.id.formregistro);
         etconpas= findViewById(R.id.conpas);
+
+        MobileAds.initialize(this, "ca-app-pub-5375202444824175~4535471184");
+
+        AdView adView = new AdView(this);
+        adView.setAdSize(AdSize.BANNER);adView.setAdUnitId("ca-app-pub-3940256099942544/6300978111");
+
+        adView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
 
         firebaseAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
