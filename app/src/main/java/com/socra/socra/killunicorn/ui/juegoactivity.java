@@ -17,6 +17,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -44,7 +46,7 @@ public class juegoactivity extends AppCompatActivity {
     int maxpuntuacion ;
     MediaPlayer clickunicorn,musicabase,musicafin;
     ImageView imageView;
-
+    private InterstitialAd mInterstitialAd;
     FirebaseAuth firebaseAuth;
 
 
@@ -61,6 +63,11 @@ public class juegoactivity extends AppCompatActivity {
         initPantalla();
         moverPato();
         initCuentaatras();
+
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
@@ -85,6 +92,9 @@ public class juegoactivity extends AppCompatActivity {
             public void onFinish() {
                 tiempo.setText("0s");
                 gameover = true;
+
+
+
                 mostrardialogofin();
                 saveResultFirestore();
             }
@@ -142,6 +152,12 @@ public class juegoactivity extends AppCompatActivity {
         builder.setPositiveButton("Reiniciar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+                if (mInterstitialAd.isLoaded()) {
+                    mInterstitialAd.show();
+
+                } else {
+
+                }
                 counter = 0;
                 contador.setText("0");
                 gameover = false;
@@ -154,6 +170,13 @@ public class juegoactivity extends AppCompatActivity {
         builder.setNegativeButton("salir", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+
+                if (mInterstitialAd.isLoaded()) {
+                    mInterstitialAd.show();
+
+                } else {
+
+                }
                 dialogInterface.dismiss();
                 finish();
                 //Intent in = new Intent(gameActivity.this,rankingActivityn.class);
