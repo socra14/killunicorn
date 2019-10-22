@@ -3,6 +3,7 @@ package com.socra.socra.killunicorn.ui;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -26,6 +27,8 @@ public class pantallainicio extends AppCompatActivity {
     private FirebaseUser firebaseUser;
     private String uid, jugadaId = "";
 
+    MediaPlayer click, musicamenu;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +42,10 @@ public class pantallainicio extends AppCompatActivity {
         AdRequest adRequest = new AdRequest.Builder().build();
         adView.loadAd(adRequest);
 
-
+        click = MediaPlayer.create(this,R.raw.click2);
+        musicamenu = MediaPlayer.create(this,R.raw.musicamenu);
+        musicamenu.start();
+        musicamenu.setLooping(true);
         firebaseAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
@@ -51,6 +57,8 @@ public class pantallainicio extends AppCompatActivity {
         btnplay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                click.start();
                 Intent i = new Intent(pantallainicio.this,juegoactivity.class);
                 startActivity(i);
             }
@@ -59,10 +67,18 @@ public class pantallainicio extends AppCompatActivity {
         btnranking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                click.start();
                 Intent i = new Intent(pantallainicio.this,ranking_activity.class);
                 startActivity(i);
             }
         });
 
+    }
+
+    @Override
+    protected void onStop() {
+        musicamenu.stop();
+        super.onStop();
     }
 }

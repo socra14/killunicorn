@@ -64,6 +64,7 @@ public class juegoactivity extends AppCompatActivity {
         moverPato();
         initCuentaatras();
 
+
         mInterstitialAd = new InterstitialAd(this);
         mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
@@ -75,13 +76,14 @@ public class juegoactivity extends AppCompatActivity {
         uid = firebaseUser.getUid();
         getPlayerNames();
         maxpuntuacion = getSharedPreferences("maxpun",MODE_PRIVATE).getInt("counter",0);
-
+        musicabase.start();
+        musicabase.setLooping(true);
         //Bundle extras = getIntent().getExtras();
         //uid = extras.getString(Constantes.EXTRA_JUGADA_ID);
     }
 
     private void initCuentaatras() {
-        new CountDownTimer(10000,1000){
+        new CountDownTimer(30000,1000){
             @Override
             public void onTick(long l) {
                 long segundosrestantes = l /1000;
@@ -137,6 +139,7 @@ public class juegoactivity extends AppCompatActivity {
     }
 
     private void mostrardialogofin() {
+        musicabase.stop();
         AlertDialog.Builder builder =new AlertDialog.Builder(this);
         View v = getLayoutInflater().inflate(R.layout.gameover, null);
 
@@ -177,6 +180,7 @@ public class juegoactivity extends AppCompatActivity {
                 } else {
 
                 }
+                
                 dialogInterface.dismiss();
                 finish();
                 //Intent in = new Intent(gameActivity.this,rankingActivityn.class);
@@ -244,6 +248,7 @@ public class juegoactivity extends AppCompatActivity {
 
     private void inicializaComponentes() {
         clickunicorn = MediaPlayer.create(this,R.raw.clickunic);
+        musicabase = MediaPlayer.create(this,R.raw.musicaprincipal);
         contador =findViewById(R.id.tvcontador);
         tiempo =findViewById(R.id.tvtimer);
         tvnick =findViewById(R.id.nombrefinal);
@@ -264,4 +269,15 @@ public class juegoactivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onStart() {
+        musicabase.start();
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        musicabase.stop();
+        super.onStop();
+    }
 }

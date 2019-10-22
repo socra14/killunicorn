@@ -1,5 +1,6 @@
 package com.socra.socra.killunicorn.ui;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import com.google.android.gms.ads.AdRequest;
@@ -17,11 +18,15 @@ import android.view.View;
 import com.socra.socra.killunicorn.R;
 
 public class ranking_activity extends AppCompatActivity {
+   private MediaPlayer music;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ranking_activity);
+        music = MediaPlayer.create(this,R.raw.musicamenu);
+        music.start();
+        music.setLooping(true);
 
 
 
@@ -43,6 +48,9 @@ public class ranking_activity extends AppCompatActivity {
 
     }
 
-
-
+    @Override
+    protected void onStop() {
+        music.stop();
+        super.onStop();
+    }
 }
