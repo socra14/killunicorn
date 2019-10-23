@@ -14,7 +14,7 @@
         android:layout_width="150dp"
         android:layout_height="70dp"
         android:layout_marginTop="80dp"
-        android:background="@drawable/play1"
+        android:background="@drawable/playnew"
         android:textColor="@android:color/white"
         app:layout_constraintEnd_toStartOf="@+id/btnIrAregistrar"
         app:layout_constraintHorizontal_bias="0.5"
@@ -27,7 +27,7 @@
         android:layout_height="70dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:background="@drawable/registrarse"
+        android:background="@drawable/registrarsenew"
         android:textColor="@color/common_google_signin_btn_text_dark_default"
         app:layout_constraintBottom_toBottomOf="@+id/btnPlay"
         app:layout_constraintEnd_toEndOf="parent"
@@ -76,7 +76,7 @@
         android:layout_marginTop="64dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/titulo" />
+        app:srcCompat="@drawable/tutulonew" />
 
     <ProgressBar
         android:id="@+id/progressBarlogin"
@@ -96,7 +96,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         app:adSize="BANNER"
-        app:adUnitId="ca-app-pub-3940256099942544/6300978111"
+        app:adUnitId="ca-app-pub-5375202444824175/6860012503"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"

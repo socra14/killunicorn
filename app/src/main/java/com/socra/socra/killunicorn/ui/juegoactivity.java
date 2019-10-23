@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -34,7 +35,7 @@ import java.util.prefs.Preferences;
 public class juegoactivity extends AppCompatActivity {
 
     TextView contador,tiempo,tvnick;
-    ImageView imageViewpato;
+    ImageView imageViewpato,imageView2;
     int counter =0;
     int anchopantalla;
     int altopantalla;
@@ -62,11 +63,12 @@ public class juegoactivity extends AppCompatActivity {
         eventos();
         initPantalla();
         moverPato();
+        moverPato2();
         initCuentaatras();
 
 
         mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        mInterstitialAd.setAdUnitId("ca-app-pub-5375202444824175/3901433403");
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
 
 
@@ -77,13 +79,14 @@ public class juegoactivity extends AppCompatActivity {
         getPlayerNames();
         maxpuntuacion = getSharedPreferences("maxpun",MODE_PRIVATE).getInt("counter",0);
         musicabase.start();
+        musicabase.setVolume(5,5);
         musicabase.setLooping(true);
         //Bundle extras = getIntent().getExtras();
         //uid = extras.getString(Constantes.EXTRA_JUGADA_ID);
     }
 
     private void initCuentaatras() {
-        new CountDownTimer(30000,1000){
+        new CountDownTimer(40000,1000){
             @Override
             public void onTick(long l) {
                 long segundosrestantes = l /1000;
@@ -139,7 +142,8 @@ public class juegoactivity extends AppCompatActivity {
     }
 
     private void mostrardialogofin() {
-        musicabase.stop();
+
+
         AlertDialog.Builder builder =new AlertDialog.Builder(this);
         View v = getLayoutInflater().inflate(R.layout.gameover, null);
 
@@ -160,12 +164,33 @@ public class juegoactivity extends AppCompatActivity {
 
                 } else {
 
+
+                    counter = 0;
+                    contador.setText("0");
+                    gameover = false;
+                    initCuentaatras();
+                    moverPato2();
+                    moverPato();
                 }
-                counter = 0;
-                contador.setText("0");
-                gameover = false;
-                initCuentaatras();
-                moverPato();
+
+                mInterstitialAd.setAdListener(new AdListener(){
+                    @Override
+                    public void onAdClosed() {
+
+                        counter = 0;
+                        contador.setText("0");
+                        gameover = false;
+                        initCuentaatras();
+                        moverPato();
+                        moverPato2();
+                        super.onAdClosed();
+                    }
+                });
+
+
+
+
+
             }
         });
 
@@ -180,7 +205,7 @@ public class juegoactivity extends AppCompatActivity {
                 } else {
 
                 }
-                
+
                 dialogInterface.dismiss();
                 finish();
                 //Intent in = new Intent(gameActivity.this,rankingActivityn.class);
@@ -215,15 +240,38 @@ public class juegoactivity extends AppCompatActivity {
                     counter++;
                     contador.setText(String.valueOf(counter));
 
-                    imageViewpato.setImageResource(R.drawable.sangre);
+                    imageViewpato.setImageResource(R.drawable.sangrerosa);
 
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            imageViewpato.setImageResource(R.drawable.unicornio);
+                            imageViewpato.setImageResource(R.drawable.newunicorn);
                             moverPato();
                         }
                     },300);
+                }
+
+
+            }
+        });
+
+        imageView2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!gameover){
+                    clickunicorn.start();
+                    counter++;
+                    contador.setText(String.valueOf(counter));
+
+                    imageView2.setImageResource(R.drawable.sangrerosa);
+
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            imageView2.setImageResource(R.drawable.unicorn2);
+                            moverPato2();
+                        }
+                    },400);
                 }
 
 
@@ -246,6 +294,20 @@ public class juegoactivity extends AppCompatActivity {
 
     }
 
+    private void moverPato2(){
+        int min = 0;
+        int maxX = anchopantalla-imageView2.getWidth();
+        int maxY = altopantalla - imageView2.getHeight();
+
+        int randomx = aleatorio.nextInt(((maxX-min)+1)+min);
+        int randomy = aleatorio.nextInt(((maxY-min)+1)+min);
+
+        imageView2.setX(randomx);
+        imageView2.setY(randomy);
+
+
+    }
+
     private void inicializaComponentes() {
         clickunicorn = MediaPlayer.create(this,R.raw.clickunic);
         musicabase = MediaPlayer.create(this,R.raw.musicaprincipal);
@@ -253,6 +315,7 @@ public class juegoactivity extends AppCompatActivity {
         tiempo =findViewById(R.id.tvtimer);
         tvnick =findViewById(R.id.nombrefinal);
         imageViewpato =findViewById(R.id.fotopato1);
+        imageView2 =findViewById(R.id.fotopato2);
 
 
        /* Typeface tipeface = Typeface.createFromAsset(getAssets(),"pixel.ttf");

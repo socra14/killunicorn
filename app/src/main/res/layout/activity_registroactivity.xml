@@ -75,7 +75,7 @@
                 android:layout_height="65dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="40dp"
-                android:background="@drawable/registrarse"
+                android:background="@drawable/registrarsenew"
 
                 android:textColor="@android:color/background_light" />
         </LinearLayout>
@@ -88,7 +88,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         app:adSize="BANNER"
-        app:adUnitId="ca-app-pub-3940256099942544/6300978111"
+        app:adUnitId="ca-app-pub-5375202444824175/7575571641"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"

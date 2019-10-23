@@ -16,7 +16,7 @@
         android:layout_marginTop="80dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nombrefinal"
-        app:srcCompat="@drawable/unicornio" />
+        app:srcCompat="@drawable/newunicorn" />
 
     <ImageView
         android:id="@+id/contador_pato"
@@ -27,7 +27,7 @@
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/sangre" />
+        app:srcCompat="@drawable/sangrerosa" />
 
     <TextView
         android:id="@+id/tvcontador"
@@ -80,5 +80,14 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/fotopato2"
+        android:layout_width="118dp"
+        android:layout_height="102dp"
+        android:layout_marginTop="180dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nombrefinal"
+        app:srcCompat="@drawable/unicorn2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

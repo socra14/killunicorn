@@ -49,7 +49,7 @@ public class loginactivity extends AppCompatActivity {
         MobileAds.initialize(this, "ca-app-pub-5375202444824175~4535471184");
 
         AdView adView = new AdView(this);
-        adView.setAdSize(AdSize.BANNER);adView.setAdUnitId("ca-app-pub-3940256099942544/6300978111");
+        adView.setAdSize(AdSize.BANNER);adView.setAdUnitId("ca-app-pub-5375202444824175/6860012503");
 
         adView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
