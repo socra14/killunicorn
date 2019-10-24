@@ -14,6 +14,7 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.view.Display;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -49,7 +50,7 @@ public class juegoactivity extends AppCompatActivity {
     ImageView imageView;
     private InterstitialAd mInterstitialAd;
     FirebaseAuth firebaseAuth;
-
+    Button btncomp;
 
 
     @Override
@@ -143,9 +144,10 @@ public class juegoactivity extends AppCompatActivity {
 
     private void mostrardialogofin() {
 
-
         AlertDialog.Builder builder =new AlertDialog.Builder(this);
         View v = getLayoutInflater().inflate(R.layout.gameover, null);
+
+
 
         builder.setMessage("Has conseguido matar " +counter+ " unicornios")
                 .setTitle("Game over")
@@ -213,7 +215,16 @@ public class juegoactivity extends AppCompatActivity {
 
             }
         });
-
+        btncomp = v.findViewById(R.id.btncompartir);
+        btncomp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("text/plain");
+                intent.putExtra(Intent.EXTRA_TEXT, "He conseguido aplastar " +counter+ " unicornios.  https://play.google.com/store/apps/details?id=com.pixin&gl=ES");
+                startActivity(Intent.createChooser(intent, "Compartir en"));
+            }
+        });
         AlertDialog dialog = builder.create();
 
         dialog.show();
