@@ -4,14 +4,16 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/unicornio_go"
+        android:icon="@drawable/unicorn2"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
+
+
         <meta-data
-        android:name="com.google.android.gms.ads.APPLICATION_ID"
-        android:value="ca-app-pub-5375202444824175~4535471184"/>
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-5375202444824175~4535471184" />
 
         <activity
             android:name=".ui.ranking_activity"
@@ -23,14 +25,18 @@
                 android:value="com.socra.socra.killunicorn.ui.juegoactivity" />
         </activity>
         <activity android:name=".ui.juegoactivity" />
-        <activity android:name=".ui.pantallainicio" />
-        <activity android:name=".ui.registroactivity" />
-        <activity android:name=".ui.loginactivity">
+        <activity android:name=".ui.pantallainicio">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+
+        <activity android:name=".ui.registroactivity" />
+        <activity android:name=".ui.loginactivity">
+
         </activity>
     </application>
 

@@ -6,12 +6,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Point;
 import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.widget.Button;
@@ -21,6 +23,9 @@ import android.widget.TextView;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.games.Games;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -51,6 +56,7 @@ public class juegoactivity extends AppCompatActivity {
     private InterstitialAd mInterstitialAd;
     FirebaseAuth firebaseAuth;
     Button btncomp;
+    GoogleApiClient apiClient;
 
 
     @Override
@@ -68,16 +74,20 @@ public class juegoactivity extends AppCompatActivity {
         initCuentaatras();
 
 
+
         mInterstitialAd = new InterstitialAd(this);
         mInterstitialAd.setAdUnitId("ca-app-pub-5375202444824175/3901433403");
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
 
 
-        firebaseAuth = FirebaseAuth.getInstance();
-        firebaseUser = firebaseAuth.getCurrentUser();
+       // firebaseAuth = FirebaseAuth.getInstance();
+        //firebaseUser = firebaseAuth.getCurrentUser();
 
-        uid = firebaseUser.getUid();
-        getPlayerNames();
+       // uid = firebaseUser.getUid();
+        //getPlayerNames();
+
+
+
         maxpuntuacion = getSharedPreferences("maxpun",MODE_PRIVATE).getInt("counter",0);
         musicabase.start();
         musicabase.setVolume(5,5);
@@ -107,39 +117,14 @@ public class juegoactivity extends AppCompatActivity {
         }.start();
     }
 
-    private void getPlayerNames() {
-        // Obtener el nombre del player
-        bd.collection("Usuarios")
-                .document(uid)
-                .get()
-                .addOnSuccessListener(juegoactivity.this, new OnSuccessListener<DocumentSnapshot>() {
-                    @Override
-                    public void onSuccess(DocumentSnapshot documentSnapshot) {
 
-                        name = documentSnapshot.get("nick").toString();
-                        tvnick.setText(name);
-
-
-                    }
-                });
-
-    }
 
     private void saveResultFirestore() {
-        if (counter > maxpuntuacion){
+        if (counter > maxpuntuacion) {
             getSharedPreferences("maxpun", MODE_PRIVATE).edit().putInt("counter", counter).commit();
-
-            bd.collection("Usuarios")
-                    .document(uid)
-                    .update(
-                            "patos",counter
-                    );
 
 
         }
-
-
-
     }
 
     private void mostrardialogofin() {
@@ -327,6 +312,8 @@ public class juegoactivity extends AppCompatActivity {
         tvnick =findViewById(R.id.nombrefinal);
         imageViewpato =findViewById(R.id.fotopato1);
         imageView2 =findViewById(R.id.fotopato2);
+
+
 
 
        /* Typeface tipeface = Typeface.createFromAsset(getAssets(),"pixel.ttf");
