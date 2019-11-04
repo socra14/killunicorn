@@ -23,6 +23,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:background="@drawable/rankingnew"
+        android:onClick="showLeaderboard"
         app:layout_constraintBottom_toBottomOf="@+id/btnplay"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"

@@ -84,11 +84,10 @@ public class juegoactivity extends AppCompatActivity {
         //firebaseUser = firebaseAuth.getCurrentUser();
 
        // uid = firebaseUser.getUid();
-        //getPlayerNames();
-
-
+        //getPlayerN
 
         maxpuntuacion = getSharedPreferences("maxpun",MODE_PRIVATE).getInt("counter",0);
+
         musicabase.start();
         musicabase.setVolume(5,5);
         musicabase.setLooping(true);
@@ -113,6 +112,10 @@ public class juegoactivity extends AppCompatActivity {
 
                 mostrardialogofin();
                 saveResultFirestore();
+
+                Games.Leaderboards.submitScore(apiClient,
+                        getString(R.string.leaderboard_ranking),
+                        counter);
             }
         }.start();
     }
@@ -122,6 +125,7 @@ public class juegoactivity extends AppCompatActivity {
     private void saveResultFirestore() {
         if (counter > maxpuntuacion) {
             getSharedPreferences("maxpun", MODE_PRIVATE).edit().putInt("counter", counter).commit();
+
 
 
         }

@@ -12,8 +12,11 @@
 
 
         <meta-data
-            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:name="com.google.android.gms.ads.APP_ID"
             android:value="ca-app-pub-5375202444824175~4535471184" />
+        <meta-data android:name="com.google.android.gms.games.APP_ID"
+            android:value="@string/app_id" />
+
 
         <activity
             android:name=".ui.ranking_activity"

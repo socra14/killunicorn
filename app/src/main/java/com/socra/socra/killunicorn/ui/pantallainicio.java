@@ -95,14 +95,21 @@ public class pantallainicio extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+
+
                 click.start();
-                Intent i = new Intent(pantallainicio.this,ranking_activity.class);
-                startActivity(i);
+               // Intent i = new Intent(pantallainicio.this,ranking_activity.class);
+                //startActivity(i);
+                showLeaderboard(v);
             }
         });
 
     }
-
+    public void showLeaderboard(View v) {
+        startActivityForResult(
+                Games.Leaderboards.getLeaderboardIntent(apiClient,
+                        getString(R.string.leaderboard_ranking)), 0);
+    }
 
     @Override
     protected void onStop() {
